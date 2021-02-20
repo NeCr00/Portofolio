@@ -110,6 +110,10 @@ input[type=checkbox] {
   display:table;
   content:"";
 }
+.err{
+  color:red;
+  font-size: medium;
+}
 
 .p-container span {
   display:block;
@@ -118,7 +122,7 @@ input[type=checkbox] {
   padding-top:8px;
 }
 
-input[type=submit] {
+.but {
  	padding:5px 20px;
   border:1px solid rgba(0,0,0,0.4);
   text-shadow:0 -1px 0 rgba(0,0,0,0.4);
@@ -134,7 +138,7 @@ input[type=submit] {
   font-size:13px;
 }
 
-input[type=submit]:hover {
+.but:hover {
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.3),
     inset 0 -10px 10px rgba(255,255,255,0.1);

@@ -9,6 +9,9 @@ cors = require("cors");
 
 app.use(cors());
 
+
+
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -48,14 +51,16 @@ app.post('/auth', function (request, response) {
             if (results.length > 0) {
                 const secretToken = email+password;
                 const accessToken = jwt.sign({email:email},secretToken)
-                response.json({email,accessToken});
+                request.session.email = email
+                
+                response.json({email,accessToken,auth:true});
             } else {
-                response.send('Incorrect email and/or Password!');
+                response.json({message:'Incorrect email or Password!',auth:false});
             }
             response.end();
         });
     } else {
-        response.send('Please enter email and Password!');
+        response.json({message:'Please fill username and password',auth:false});
         response.end();
     }
 });

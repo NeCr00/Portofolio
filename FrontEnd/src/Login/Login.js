@@ -1,33 +1,37 @@
 import axios from "axios";
-import { useState } from "react";
+import React,{ useState } from "react";
 import "./Login.css"
 function Login() {
 
-  const [state, setState] = useState({
-    email: "",
-    password: ""
-  });
+const [email,setEmail] = useState("")
 
+const [password,setPassword] = useState("")
 
-  const handleInputChange = (event) => {
-    setState((prevProps) => ({
-      ...prevProps,
-      [event.target.name]: event.target.value
-    }));
-  };
+const [errMsg,setErrMsg] = useState("")
 
-  const checkCredentials = () => {
+  
+
+  const checkCredentials = (event) => {
+    event.preventDefault();
     const userInfo = {
-      email: state.email,
-      password: state.password
+      email: email,
+      password: password
     }
 
     axios.post('http://localhost:3001/auth',userInfo).then((res => {
-      console.log(res)
+      
+        if (res.data.email){
+          localStorage.setItem("loggedIn",true)
+          setErrMsg("")
+        console.log(res.data)}
+        else
+          setErrMsg(res.data.message)
+
     })
     ).catch((error) => {
       console.log(error)
   });
+
   }
 
 
@@ -39,26 +43,29 @@ return (
     <form>
       <h1>My.Portofolio</h1>
       <div class="inset">
+     
         <p>
+
           <label for="email">EMAIL ADDRESS</label>
-          <input type="text" name="email" id="email" value={state.email} onChange={handleInputChange} />
+          <input type="text" name="email" id="email"  onChange={(event)=>setEmail(event.target.value)} />
         </p>
         <p>
           <label for="password">PASSWORD</label>
-          <input type="password" name="password" id="password" value={state.password} onChange={handleInputChange} />
+          <input type="password" name="password" id="password"  onChange={(event)=>setPassword(event.target.value)} />
         </p>
+        <p class = "err"> {errMsg}</p>
         <p>
-          <input type="checkbox" name="remember" id="remember" />
-          <label for="remember">Remember me for 14 days</label>
+        
         </p>
       </div>
       <p class="p-container">
         <span>Forgot password ?</span>
-        <input type="submit" name="go" id="go" value="Log in" onClick={() => checkCredentials()} />
+        <button class = "but" onClick={(event) => checkCredentials(event)} >Login</button>
       </p>
+     
     </form>
 
-
+   
 
   </div>
 
