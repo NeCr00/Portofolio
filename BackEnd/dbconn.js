@@ -39,6 +39,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const secretToken = "aaqaqqaqaqaqqaq"
 // app.get('/', function (request, response) {
 //     response.sendFile(path.join(__dirname + '/login.html'));
 // });
@@ -49,7 +50,7 @@ app.post('/auth', function (request, response) {
     if (email && password) {
         connection.query('SELECT * FROM accounts WHERE email = ? AND password = ?', [email, password], function (error, results, fields) {
             if (results.length > 0) {
-                const secretToken = email+password;
+                
                 const accessToken = jwt.sign({email:email},secretToken)
                 request.session.email = email
                 
@@ -69,5 +70,30 @@ app.post('/', function (request, response) {
         response.send('Welcome back, ' + request.session.email + '!');
     console.log(request.body.email)
 });
+
+
+const authenticateJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    console.log(authHeader)
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+        console.log(token)
+        jwt.verify(token, secretToken, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+
+            req.user = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }
+};
+
+app.get('/verifyJwt',authenticateJWT,function (req,res){
+    res.json({valid:true})
+});
+
 
 app.listen(3001);
