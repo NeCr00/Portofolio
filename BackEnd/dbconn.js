@@ -9,18 +9,15 @@ cors = require("cors");
 
 app.use(cors());
 
-
-
-
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
     database: 'nodelogin',
-    port:'3307'
+    port: '3307'
 });
 
-connection.connect(function(err) {
+connection.connect(function (err) {
     if (err) {
         console.error('Error connecting: ' + err.stack);
         return;
@@ -50,37 +47,33 @@ app.post('/auth', function (request, response) {
     if (email && password) {
         connection.query('SELECT * FROM accounts WHERE email = ? AND password = ?', [email, password], function (error, results, fields) {
             if (results.length > 0) {
-                
-                const accessToken = jwt.sign({email:email},secretToken)
+
+                const accessToken = jwt.sign({ email: email }, secretToken)
                 request.session.email = email
-                
-                response.json({email,accessToken,auth:true});
+
+                response.json({ email, accessToken, auth: true });
             } else {
-                response.json({message:'Incorrect email or Password!',auth:false});
+                response.json({ message: 'Incorrect email or Password!', auth: false });
             }
             response.end();
         });
     } else {
-        response.json({message:'Please fill username and password',auth:false});
+        response.json({ message: 'Please fill username and password', auth: false });
         response.end();
     }
-});
-
-app.post('/', function (request, response) {
-        response.send('Welcome back, ' + request.session.email + '!');
-    console.log(request.body.email)
 });
 
 
 const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    console.log(authHeader)
     if (authHeader) {
         const token = authHeader.split(' ')[1];
-        console.log(token)
+        //console.log(token)
         jwt.verify(token, secretToken, (err, user) => {
             if (err) {
-                return res.sendStatus(403);
+                console.log("error")
+                return res.json({valid:false});
+                
             }
 
             req.user = user;
@@ -91,8 +84,8 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
-app.get('/verifyJwt',authenticateJWT,function (req,res){
-    res.json({valid:true})
+app.get('/verifyJwt', authenticateJWT, function (req, res) {
+    res.json({ valid: true })
 });
 
 
