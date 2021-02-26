@@ -10,14 +10,7 @@ function Login(props) {
   const [errMsg, setErrMsg] = useState("")
 
 
-  useEffect(() => {
-    let isAuth = localStorage.getItem('isAuth')
-    console.log(isAuth)
-    if(isAuth) {
-       props.history.push('/Dashboard')
-    }
-
- }, [])
+     
 
 
   const checkCredentials = (event) => {
