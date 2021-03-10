@@ -1,10 +1,10 @@
 import React from 'react'
 import './PageContent.css'
-function  PageContent ()  {
+function  PageContent (props)  {
 
 return(
 
-    <div className = "page-content"> My content</div>
+    <div> {props.children} </div>
 
 )
 

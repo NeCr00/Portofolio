@@ -1,0 +1,102 @@
+.fakeBody {
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  width: 18%;
+  height: 100%;
+  background: rgb(65, 64, 64);
+  border: 5px solid black;
+}
+
+.sidebarHeader {
+  position: relative;
+  height: 40%;
+  margin: auto;
+  border-bottom: 5px solid rgb(26, 25, 25);
+}
+
+.userName{
+  color: white;
+  font-family: Abel;
+  font-style: italic;
+  text-align: center;
+  position: relative;
+  margin-top: 80px;
+  font-weight: 700;
+}
+
+.userImage {
+  position: relative;
+  display: block;
+  
+  width: 80%;
+  height: 60%;
+  margin: auto;
+  top: 35px;
+  border: 5px solid black;
+}
+
+.sidebarMenu {
+  position: relative;
+  height: 80%;
+}
+
+.sidebarButContainer {
+  position: relative;
+
+  height: 80%;
+  width: 100%;
+  margin: auto;
+  font-family: Abel;
+  font-style: italic;
+}
+
+.first {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+ 
+}
+
+.linkContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  
+}
+
+:root {
+  --mainColor: #000000;
+}
+.link {
+  background: linear-gradient(
+    to bottom,
+    var(--mainColor) 0%,
+    var(--mainColor) 100%
+  );
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 4px 4px;
+  color: rgb(230, 230, 230);
+  text-decoration: none;
+  transition: background-size 0.2s;
+  font-size: larger;
+  font-weight: 800;
+  top:20px;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.link:hover {
+  background-size: 4px 50px;
+}

@@ -1,56 +1,47 @@
 import axios from "axios";
 import React, { useState, useEffect, useReducer } from "react";
 import Navbar from "../Navbar/Navbar";
-import { BrowserRouter as Router, Switch, Route, Link, useHistory as history } from 'react-router-dom';
-import PageContent from '../PageContent/PageContent'
-import './Dashboard.css'
-
-
+import PageContent from "../Container/PageContent/PageContent";
+import styles from "./Dashboard.module.css";
+import Main from "../Components/Main/Main";
+import Cv from '../Components/Cv/Cv'
 function Dashbroad(props) {
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    axios
+      .get("http://localhost:3001/verifyJwt", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        if (!res.data.valid) {
+          localStorage.removeItem("jwtToken");
 
-    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-
-    useEffect(() => {
-        const token = localStorage.getItem("jwtToken")
-        axios.get('http://localhost:3001/verifyJwt', { headers: { Authorization: `Bearer ${token}` } }).then(res => {
-            if (!res.data.valid) {
-                localStorage.removeItem("jwtToken")
-
-                props.history.push('/')
-
-            }
-
-        }).catch((error) => {
-            localStorage.removeItem("jwtToken")
-            props.history.push('/')
-        })
-    }, [])
-
-    const [logout, setLogout] = useState(false)
-
-
-    function Logout(e) {
+          props.history.push("/");
+        }
+      })
+      .catch((error) => {
         localStorage.removeItem("jwtToken");
-        localStorage.removeItem("isAuth");
-        props.history.push("/")
+        props.history.push("/");
+      });
+  }, []);
 
-    }
+  const [logout, setLogout] = useState(false);
 
+  function Logout(e) {
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("isAuth");
+    props.history.push("/");
+  }
 
-    return (
+  return (
+    <div>
+      <Navbar></Navbar>
 
-        <div>
-            <div className = "navbar">
-                <Navbar logout={Logout}> </Navbar>
-            </div>
-
-            <div className="page-container">
-                <PageContent class=".page-contain"> </PageContent>
-            </div>
-
-        </div>
-    )
-
+      <PageContent>
+        
+      </PageContent>
+    </div>
+  );
 }
 
 export default Dashbroad;

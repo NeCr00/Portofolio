@@ -1,18 +1,20 @@
-
-import Login from './Login/Login.js'
-import { BrowserRouter as Router, Switch, Route, Link, useHistory as history } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import Dashboard from './Dashboard/Dashboard'
-import ProtectedRoute from './Login/ProtectedRoute'
+import Login from "./Login/Login.js";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory as history,
+} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Dashboard from "./Dashboard/Dashboard";
+import ProtectedRoute from "./Login/ProtectedRoute";
 
 function App() {
-
   return (
     <div>
-
       <Router>
         <Switch>
-
           <Route path="/" exact component={Login} />
 
           <ProtectedRoute>
@@ -22,7 +24,6 @@ function App() {
           <Route path="*">
             <div> Not Valid Path</div>
           </Route>
-
         </Switch>
       </Router>
     </div>
