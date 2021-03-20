@@ -12,8 +12,14 @@ app.use(cors());
 var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
+<<<<<<< Updated upstream
     password: "giannis007",
     database: "nodelogin"
+=======
+    password: "root",
+    database: "nodelogin",
+    port: '3307'
+>>>>>>> Stashed changes
 });
 
 connection.connect(function (err) {

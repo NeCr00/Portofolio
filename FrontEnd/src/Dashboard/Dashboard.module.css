@@ -1,9 +1,13 @@
 .page-container {
     margin: auto;
     text-align: center;
+   
 }
 
 .navbar{
     width: 100px;
 }
 
+body{
+    background-color: rgb(25, 47, 88);
+}
