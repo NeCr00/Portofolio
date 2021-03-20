@@ -10,33 +10,21 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   width: 18%;
-<<<<<<< Updated upstream
-  height: 100%;
-  background: rgb(65, 64, 64);
-  border: 5px solid black;
-=======
   height: 95%;
   background: rgb(65, 64, 64);
   border: 4px solid black;
   border-radius:10px;
   margin-left: 10px;
   margin-top: 15px;
->>>>>>> Stashed changes
 }
 
 .sidebarHeader {
   position: relative;
-<<<<<<< Updated upstream
-  height: 40%;
-  margin: auto;
-  border-bottom: 5px solid rgb(26, 25, 25);
-=======
   height: 37%;
   margin: auto;
   justify-content: center;
 
  
->>>>>>> Stashed changes
 }
 
 .userName{
@@ -52,18 +40,10 @@
 .userImage {
   position: relative;
   display: block;
-<<<<<<< Updated upstream
-  
-  width: 80%;
-  height: 60%;
-  margin: auto;
-  top: 35px;
-=======
   width: 80%;
   height: 60%;
   margin: auto;
   top: 25px;
->>>>>>> Stashed changes
   border: 5px solid black;
 }
 
@@ -73,12 +53,7 @@
 }
 
 .sidebarButContainer {
-<<<<<<< Updated upstream
-  position: relative;
-
-=======
  
->>>>>>> Stashed changes
   height: 80%;
   width: 100%;
   margin: auto;
@@ -86,17 +61,6 @@
   font-style: italic;
 }
 
-<<<<<<< Updated upstream
-.first {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 45px;
- 
-}
-=======
-
->>>>>>> Stashed changes
 
 .linkContainer {
   width: 100%;
@@ -104,10 +68,7 @@
   justify-content: center;
   margin-top: 30px;
   
-<<<<<<< Updated upstream
-=======
   
->>>>>>> Stashed changes
 }
 
 :root {
@@ -125,13 +86,8 @@
   color: rgb(230, 230, 230);
   text-decoration: none;
   transition: background-size 0.2s;
-<<<<<<< Updated upstream
-  font-size: larger;
-  font-weight: 800;
-=======
   font-size: large;
   font-weight: 600;
->>>>>>> Stashed changes
   top:20px;
   justify-content: center;
   text-align: center;
@@ -141,8 +97,6 @@
 .link:hover {
   background-size: 4px 50px;
 }
-<<<<<<< Updated upstream
-=======
 
 .logoutcontainer{
   text-align: center;
@@ -170,4 +124,3 @@
   border: 3px solid rgb(0, 0, 0);
   width: 17%;
 }
->>>>>>> Stashed changes

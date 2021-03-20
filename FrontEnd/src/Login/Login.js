@@ -2,21 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styles from "./Login.module.css";
 function Login(props) {
-<<<<<<< Updated upstream
-  const [email, setEmail] = useState("");
-
-  const [password, setPassword] = useState("");
-=======
   
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
 
   const [errMsg, setErrMsg] = useState("");
->>>>>>> Stashed changes
 
-  const [errMsg, setErrMsg] = useState("");
-
+ 
   const checkCredentials = (event) => {
     event.preventDefault();
     const userInfo = {
@@ -37,15 +30,6 @@ function Login(props) {
         console.log(error);
       });
   };
-<<<<<<< Updated upstream
-  return (
-    <div className = {styles.page}>
-      <form className = {styles.form}>
-        <h1 className ={styles.title}>My.Portofolio</h1>
-        <div className={styles.inset}>
-          <p>
-            <label className = {styles.label} for="email">EMAIL ADDRESS</label>
-=======
 
 
   useEffect(() => {
@@ -74,7 +58,6 @@ function Login(props) {
             <label className={styles.label} for="email">
               EMAIL ADDRESS
             </label>
->>>>>>> Stashed changes
             <input
               type="text"
               name="email"
@@ -83,13 +66,9 @@ function Login(props) {
             />
           </p>
           <p>
-<<<<<<< Updated upstream
-            <label className = {styles.label} for="password">PASSWORD</label>
-=======
             <label className={styles.label} for="password">
               PASSWORD
             </label>
->>>>>>> Stashed changes
             <input
               type="password"
               name="password"
@@ -100,15 +79,6 @@ function Login(props) {
           <p className={styles.err}> {errMsg}</p>
           <p></p>
         </div>
-<<<<<<< Updated upstream
-        <p className={styles.container }>
-          <span>Forgot password ?</span>
-          <button className={styles.but} onClick={(event) => checkCredentials(event)}>
-            Login
-          </button>
-        </p>
-        
-=======
         <p className={styles.container}>
           <span>Forgot password ?</span>
           <button
@@ -118,7 +88,6 @@ function Login(props) {
             Login
           </button>
         </p>
->>>>>>> Stashed changes
       </form>
     </div>
   );
