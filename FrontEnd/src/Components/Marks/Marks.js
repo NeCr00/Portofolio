@@ -60,6 +60,7 @@ function Marks(props) {
   } = tableInstance;
 
   return (
+    <div className={styles.Container}>
     <div className={styles.tablewrapper}>
       <h2> Marks</h2>
 
@@ -116,6 +117,7 @@ function Marks(props) {
           }
         </tbody>
       </table>
+    </div>
     </div>
   );
 }

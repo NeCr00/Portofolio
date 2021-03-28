@@ -3,14 +3,24 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useHistory as history,
+  useHistory,withRouter 
 } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Dashboard from "./Dashboard/Dashboard";
 import ProtectedRoute from "./Login/ProtectedRoute";
+import Calendar from "./Components/Calendar/Calendars";
+import Navbar from "./Navbar/Navbar";
+import PageContent from "./Container/PageContent/PageContent";
+import Marks from "./Components/Marks/Marks";
+import List from "./Components/ToDoList/ToDoList";
+import Drive from "./Components/Drive/Drive";
 
-function App() {
+function App(props) {
+
+  
+
+  
+
   return (
     <div>
       <Router>
@@ -18,7 +28,18 @@ function App() {
           <Route path="/" exact component={Login} />
 
           <ProtectedRoute>
-            <Route path="/Dashboard" exact component={Dashboard}></Route>
+            <Navbar > </Navbar>
+            <PageContent>
+              <Route path="/Dashboard" exact component={Dashboard}></Route>
+
+              <Route path="/Calendar" exact component={Calendar}></Route>
+
+              <Route path="/Marks" exact component={Marks}></Route>
+
+              <Route path="/Drive" exact component={Drive}></Route>
+
+              <Route path="/ToDoList" exact component={List}></Route>
+            </PageContent>
           </ProtectedRoute>
 
           <Route path="*">
@@ -30,4 +51,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

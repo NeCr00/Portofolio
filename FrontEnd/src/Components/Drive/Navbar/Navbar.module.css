@@ -1,0 +1,87 @@
+.Container {
+  background-color: rgb(255, 255, 255);
+  width: 99.9%;
+  height: 110px;
+  border-bottom: 2px solid black;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
+p{
+  color: black;
+  font-size: 12px;
+}
+.Logo {
+  display: flex;
+  float: left;
+  width: 250px;
+  margin: auto;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.DriveImage {
+  width: 80px;
+  margin-left: 25px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.Figcaption {
+  font-weight: 800;
+  width: 100px;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-left: 20px;
+  
+}
+
+.Searchbar {
+  width: 80%;
+  
+  position: relative;
+  margin-left: 20 auto;
+}
+
+.TextField {
+  width: 60%;
+  margin-left: 50px;
+  height: 38px;
+  border: 2px solid rgb(126, 124, 124);
+  border-radius: 5px;
+  font-size: larger;
+  font-weight: 700;
+  font-family: "Times New Roman", Times, serif;
+  color: green;
+}
+
+.actionIcons {
+  display: flex;
+  justify-content: space-between;
+  width:300px;
+  float: left;
+  margin-right: 200px;
+  align-items: center;
+}
+
+
+.btn{
+  background-color: rgb(255, 255, 255);
+  border:none;
+  width:100px;
+  outline: none;
+}
+
+.btn:hover{
+  border:none;
+  transform: translateY(4px);
+}
+
+.btn:active {
+ 
+  transform: translateY(7px);
+}

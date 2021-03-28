@@ -1,0 +1,29 @@
+
+.text{
+    color: white;
+    font-size:17px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.selected{
+    background-color: rgba(0, 153, 255, 0.363); 
+    margin-right: 45px;
+    margin-top: 40px;
+    overflow: hidden; 
+    transform: translateY(7px);
+}
+
+.unselected{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden; 
+    margin-right: 45px;
+    margin-top: 40px;
+}
+
+.unselected:active{
+   
+    transform: translateY(7px);
+}

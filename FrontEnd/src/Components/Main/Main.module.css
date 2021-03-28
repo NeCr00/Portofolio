@@ -1,7 +1,8 @@
 .test{
-    text-align: center;
-    font-size: larger;
-    font-weight: bolder;
-    margin: auto;
-    position: relative;
+    background-color: rgb(17, 54, 109);
+    width: 100%;
+    height: 100%;
+    border-bottom: 2px solid black;
+    margin: 0 auto;
+    float:right;
 }

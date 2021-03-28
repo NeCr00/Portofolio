@@ -1,0 +1,27 @@
+.Containerr {
+  width: 80%;
+  color: white;
+  display: flex;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.text {
+  color: whitesmoke;
+  font-size: 35px;
+  font-family: Helvetica, Arial, Helvetica, sans-serif;
+  spacing: 20px;
+}
+
+.btn {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
+.btn:active {
+  transform: translateY(2px);
+}

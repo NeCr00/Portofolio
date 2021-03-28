@@ -29,6 +29,7 @@ const currentDate = new Date();
 function Calendars(props) {
 
   return (
+    <div className={styles.Container}>
     <div className = {styles.fakebody}>
     <h1>Calendar</h1>
     <Paper className = {styles.calendar}>
@@ -42,6 +43,8 @@ function Calendars(props) {
       <Appointments />
     </Scheduler>
   </Paper>
+  </div>
+
   </div>
   );
 }

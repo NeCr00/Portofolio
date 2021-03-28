@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { Component, useEffect, useState } from "react";
-import { Route, Redirect } from "react-router-dom";
+import React, {  useEffect } from "react";
 import { withRouter } from "react-router-dom";
 
 function ProtectedRoute(props) {
