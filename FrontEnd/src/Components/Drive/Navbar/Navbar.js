@@ -8,10 +8,14 @@ import NewFolder from "./NewFolder";
 import AddFile from "./AddFile";
 
 function Navbar(props) {
-  const [show, setShow] = useState(false);
+  const [showFile, setShowFile] = useState(false);
+  const [showFolder, setShowFolder] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleCloseFile = () => setShowFile(false);
+  const handleShowFile = () => setShowFile(true);
+
+  const handleCloseFolder = () => setShowFolder(false);
+  const handleShowFolder = () => setShowFolder(true);
 
   return (
     <>
@@ -26,11 +30,16 @@ function Navbar(props) {
         </div>
 
         <div className={styles.actionIcons}>
-          <AddFile></AddFile>
+          <AddFile
+            show={showFile}
+            handleClose={handleCloseFile}
+            handleShow={handleShowFile}
+          ></AddFile>
+
           <NewFolder
-            show={show}
-            handleClose={handleClose}
-            handleShow={handleShow}
+            show={showFolder}
+            handleClose={handleCloseFolder}
+            handleShow={handleShowFolder}
           >
             {" "}
           </NewFolder>
