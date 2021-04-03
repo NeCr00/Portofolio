@@ -12,12 +12,9 @@ app.use(cors());
 var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-
     password: "giannis007",
     database: "nodelogin",
-    password: "root",
-    database: "nodelogin",
-    port: '3307'
+    port: '3306'
 });
 
 connection.connect(function (err) {
@@ -52,12 +49,13 @@ const secretToken = "aaqaqqaqaqaqqaq";
 app.post("/auth", function (request, response) {
     var email = request.body.email;
     var password = request.body.password;
+    console.log(email)
     if (email && password) {
         connection.query(
             "SELECT * FROM accounts WHERE email = ? AND password = ?",
             [email, password],
             function (error, results, fields) {
-                if (results.length > 0) {
+                if (results.length>0) {
                     const accessToken = jwt.sign({
                             email: email,
                         },
@@ -114,5 +112,17 @@ app.get("/verifyJwt", authenticateJWT, function (req, res) {
         valid: true,
     });
 });
+
+app.get("/Folders",function (request, response){
+    var path = request.query.Path
+  
+    connection.query("SELECT * FROM Folders WHERE path=?",
+    [path],
+    function(error, results, fields){
+        response.json(results)
+    }
+    )
+
+})
 
 app.listen(3001);
