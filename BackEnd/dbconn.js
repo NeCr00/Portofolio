@@ -9,15 +9,15 @@ cors = require("cors");
 
 app.use(cors());
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "giannis007",
-    database: "nodelogin",
+var connection = mysql.createPool({
+    host: "necro.mysql.database.azure.com",
+    user: "giannisxristodou@necro",
+    password: "Giannis007",
+    database: "portofolio",
     port: '3306'
 });
 
-connection.connect(function (err) {
+connection.getConnection(function (err) {
     if (err) {
         console.error("Error connecting: " + err.stack);
         return;
