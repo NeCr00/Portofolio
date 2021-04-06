@@ -46,7 +46,7 @@
   margin: auto;
   top: 25px;
   border: 2px solid black;
-  border-radius: 140px;
+  border-radius: 100%;
 }
 
 .sidebarMenu {

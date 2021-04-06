@@ -125,4 +125,22 @@ app.get("/Folders",function (request, response){
 
 })
 
+app.post('/NewFolder', (req, res) => {
+    var path = req.body.path
+    var name = req.body.name;
+    
+    connection.query ('SELECT * FROM folders WHERE path=? AND name=?',[path,name], function(error, results, ){
+        if (results && results.length>0 )
+        res.send("This name already exists");
+        else{
+            connection.query("INSERT INTO folders (name,path)  VALUES (?,?)",[name,path], function(err,results){
+                if(err) throw err;
+                res.send("Successful");
+            })
+        }
+    })
+
+    
+});
+
 app.listen(3001);

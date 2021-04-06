@@ -61,7 +61,7 @@ textarea:focus, input:focus{
   border:2px solid black;
 }
 ::placeholder{
-  color:black;
+  color:rgb(110, 110, 110);
   text-align: center;
 }
 

@@ -8,15 +8,15 @@ function NewFolder(props) {
  const [folderName, setFolderName] = useState("");
  
 
- function handleSumbit(){
+ function handleSumbit(){ // make post request to save new Folder on the current Path
    console.log(folderName)
    const data = {
      path:props.path,
      name:folderName
    }
      if(folderName){
-       axios.post('http::/localhost:3001/NewFolder',data).then((res)=>{
-          props.forceUpdate();
+       axios.post("http://localhost:3001/NewFolder",data).then((res)=>{
+          
        }).catch((error)=>{
          console.log(error)
        })

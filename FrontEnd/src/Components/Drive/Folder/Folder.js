@@ -3,12 +3,14 @@ import FolderIcon from '@material-ui/icons/Folder';
 import styles from './Folder.module.css'
 function Folder(props){
 
+
+
 function changePath(){
-    props.handleSelectedFolder(props.name)
+    props.handleSelectedFolder(props.name+'/')
 }
 
     return(
-        <button className={styles.unselected} onClick= {changePath}>
+        <button  disabled={props.disabled} className={styles.unselected} onClick= {()=>{changePath(); }}>
         <FolderIcon style={{fontSize:100}}> </FolderIcon>
         <p className={styles.text}> {props.name}</p>
         </button>
