@@ -2,7 +2,7 @@
   background-color: rgb(255, 255, 255);
   width: 99.9%;
   height: 110px;
-  border-bottom: 2px solid black;
+  border: 2px solid black;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -48,15 +48,21 @@ p{
 }
 
 .TextField {
-  width: 60%;
+  width: 75%;
   margin-left: 50px;
   height: 38px;
-  border: 2px solid rgb(126, 124, 124);
+  border: 2px solid rgb(20, 20, 20);
   border-radius: 5px;
   font-size: larger;
   font-weight: 700;
   font-family: "Times New Roman", Times, serif;
-  color: green;
+}
+textarea:focus, input:focus{
+  border:2px solid black;
+}
+::placeholder{
+  color:black;
+  text-align: center;
 }
 
 .actionIcons {
@@ -67,6 +73,7 @@ p{
   margin-right: 200px;
   align-items: center;
 }
+
 
 
 .btn{

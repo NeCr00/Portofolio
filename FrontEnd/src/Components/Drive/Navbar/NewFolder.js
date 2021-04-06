@@ -2,25 +2,28 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import FolderIcon from "@material-ui/icons/Folder";
 import styles from './Navbar.module.css'
-
+import axios from 'axios';
 function NewFolder(props) {
 
  const [folderName, setFolderName] = useState("");
  
 
  function handleSumbit(){
-     if(folderName)
-         console.log(folderName);
-
+   console.log(folderName)
+   const data = {
+     path:props.path,
+     name:folderName
+   }
+     if(folderName){
+       axios.post('http::/localhost:3001/NewFolder',data).then((res)=>{
+          props.forceUpdate();
+       }).catch((error)=>{
+         console.log(error)
+       })
+     }
     
  }
  
- /* Folder info:
-    path
-    name
-    type
-
-*/
 
 
     
@@ -37,7 +40,7 @@ function NewFolder(props) {
           <Modal.Title>New Folder Name </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <input type="text" placeholder="Folder Name" onChange={(e)=> setFolderName(e.target.value)}></input>
+          <input type="text" onChange={(e)=> setFolderName(e.target.value)}></input>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={()=>{

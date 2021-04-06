@@ -10,10 +10,10 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   width: 17%;
-  height: 100%;
+  height: 101%;
   background: #2b3641;
-  border: 4px solid black;
-  border-radius:2px;
+  border: 2px solid black;
+  border-radius:0px;
  
 
   
@@ -34,7 +34,7 @@
   font-style: italic;
   text-align: center;
   position: relative;
-  margin-top: 80px;
+  margin-top: 50px;
   font-weight: 700;
 }
 
@@ -45,7 +45,8 @@
   height: 60%;
   margin: auto;
   top: 25px;
-  border: 5px solid black;
+  border: 2px solid black;
+  border-radius: 140px;
 }
 
 .sidebarMenu {
@@ -84,7 +85,7 @@
   background-position: 0 100%;
   background-repeat: repeat-x;
   background-size: 4px 4px;
-  color: rgb(230, 230, 230);
+  color: rgb(255, 255, 255);
   text-decoration: none;
   transition: background-size 0.2s;
   font-size: large;
@@ -104,7 +105,7 @@
   margin:  auto;
   position: relative;
   height: 15%;
-  border-bottom: black 4px solid;
+  border-bottom: black 2px solid;
   
 }
 

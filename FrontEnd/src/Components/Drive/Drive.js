@@ -34,10 +34,8 @@ function Drive(props) {
 
   return (
     <div className={styles.Drive}>
-      <Navbar> </Navbar>
-      <Path path={path} handlePreviousPath={handlePreviousPath}>
-        {" "}
-      </Path>
+      <Navbar path={path}> </Navbar>
+      <Path path={path} handlePreviousPath={handlePreviousPath}></Path>
 
       {folders.map((folder, i) => (
         <Folder

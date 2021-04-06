@@ -26,18 +26,20 @@ function Navbar(props) {
         </div>
 
         <div className={styles.Searchbar}>
-          <input className={styles.TextField} label="Search in Drive" />
+          <input className={styles.TextField} placeholder="Search in Drive" />
         </div>
 
         <div className={styles.actionIcons}>
           <AddFile
             show={showFile}
+            path={props.path}
             handleClose={handleCloseFile}
             handleShow={handleShowFile}
           ></AddFile>
 
           <NewFolder
             show={showFolder}
+            path={props.path}
             handleClose={handleCloseFolder}
             handleShow={handleShowFolder}
           >
