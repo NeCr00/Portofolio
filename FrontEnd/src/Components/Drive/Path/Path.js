@@ -5,13 +5,20 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 function Path(props){
 
 
+function test (){
+    var newpath = props.path;
+    var path = newpath.split('/');
+    var deleted = path.pop();
+    var previousPath = path.join('/')
+    console.log(previousPath)
+    props.handlePreviousPath(previousPath)
 
-
+}
     return(
 
         <div className={styles.Containerr} >
-            <p className={styles.text}>{props.path}</p>
-            <button className={styles.btn}> <ArrowBackIcon style={{fontSize:50,fill:'white'}}></ArrowBackIcon></button>
+            <p className={styles.text}> {props.path}</p>
+            <button className={styles.btn}> <ArrowBackIcon style={{fontSize:50,fill:'white'}} onClick={test}></ArrowBackIcon></button>
             <button className={styles.btn}><ArrowForwardIcon style={{fontSize:50,fill:'white'}}></ArrowForwardIcon></button>
         </div>
         

@@ -115,7 +115,7 @@ app.get("/verifyJwt", authenticateJWT, function (req, res) {
 
 app.get("/Folders",function (request, response){
     var path = request.query.Path
-  
+    console.log(request)
     connection.query("SELECT * FROM Folders WHERE path=?",
     [path],
     function(error, results, fields){
