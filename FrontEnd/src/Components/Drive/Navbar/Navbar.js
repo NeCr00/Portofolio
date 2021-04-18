@@ -17,6 +17,7 @@ function Navbar(props) {
   const handleCloseFolder = () => setShowFolder(false);
   const handleShowFolder = () => setShowFolder(true);
 
+
   return (
     <>
       <div className={styles.Container}>
@@ -28,18 +29,20 @@ function Navbar(props) {
         <div className={styles.Searchbar}>
           <input className={styles.TextField} placeholder="Search in Drive" />
         </div>
-
+    
         <div className={styles.actionIcons}>
           <AddFile
             show={showFile}
             path={props.path}
             handleClose={handleCloseFile}
             handleShow={handleShowFile}
+            render={props.render}
           ></AddFile>
 
           <NewFolder
             show={showFolder}
             path={props.path}
+            render={props.render}
             handleClose={handleCloseFolder}
             handleShow={handleShowFolder}
           >

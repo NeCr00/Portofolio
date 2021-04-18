@@ -16,7 +16,7 @@ function NewFolder(props) {
    }
      if(folderName){
        axios.post("http://localhost:3001/NewFolder",data).then((res)=>{
-          
+        setTimeout(props.render(),2000);  
        }).catch((error)=>{
          console.log(error)
        })
@@ -46,6 +46,7 @@ function NewFolder(props) {
           <Button variant="primary" onClick={()=>{
               handleSumbit();
               props.handleClose();
+              
           }}>
             Create
           </Button>

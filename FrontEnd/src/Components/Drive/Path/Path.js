@@ -7,8 +7,9 @@ function Path(props){
  const [deletedPath,setDeletedPath] = useState('')   
 
 function nextPath(){
+    if(deletedPath!='/' ){
     props.handlePreviousPath(props.path+deletedPath)
-    setDeletedPath('')
+    setDeletedPath('')}
 }
 
 function test (){

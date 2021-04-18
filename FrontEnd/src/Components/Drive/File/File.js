@@ -26,7 +26,7 @@ function handleSelectedItem(){
         
         <button className={selected? styles.selected : styles.unselected} onClick={handleSelectedItem}>
         <InsertDriveFileIcon style={{fontSize:100, fill:'black'}}> </InsertDriveFileIcon>
-         <p className={styles.text}> File</p>
+         <p className={styles.text}> {props.name + '.'+props.type}</p>
         </button>
     )
 }

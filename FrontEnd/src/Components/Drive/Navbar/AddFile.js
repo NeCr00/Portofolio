@@ -2,28 +2,41 @@ import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import AddIcon from "@material-ui/icons/Add";
 import { Modal, Button } from "react-bootstrap";
+import axios from "axios";
+
 function AddFile(props) {
-  const [selectedFiles, setSelectedFiles] = useState(null);
+  const [selectedFiles, setSelectedFiles] = useState();
+  const [disabled, setDisabled] = useState(false);
 
   function fileSelected(event) {
     setSelectedFiles(event.target.files);
-    const hi = event.target.files;
-    console.log(hi);
+    console.log(props.path)
   }
 
   function handleUpload() {
-    console.log(selectedFiles)
+    if(selectedFiles){
+    const data = new FormData();
+    data.append("file", selectedFiles[0]);
+    data.append("path" ,props.path )
+    axios
+      .post("http://localhost:3001/upload", data)
+      .then((response) => {
+        console.log(response);
+       setTimeout(props.render,3000)
+      })
+      .catch((error) => console.log(error));
+    }
+    setSelectedFiles(null)
   }
 
-  function closeModal(close){
-    if(selectedFiles)
-    close()
-  }
-
+function CloseModal(){
+  if(selectedFiles) 
+    props.handleClose()
+}
 
   return (
     <>
-      <button className={styles.btn} onClick={handleUpload}>
+      <button className={styles.btn}>
         <AddIcon style={{ fontSize: 50 }} onClick={props.handleShow}>
           {" "}
         </AddIcon>
@@ -36,11 +49,23 @@ function AddFile(props) {
           <Modal.Title>Upload a File </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <input className={styles.fileUpload} type="file" onChange={event=>fileSelected(event)}></input>
+          <input
+            className={styles.fileUpload}
+            type="file"
+            onChange={(event) => fileSelected(event)}
+          ></input>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={()=>{handleUpload(); closeModal(props.handleClose);}}>Upload</Button>
-          <Button variant="secondary" onClick={props.handleClose}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              handleUpload();
+              CloseModal();
+            }}
+          >
+            Upload
+          </Button>
+          <Button variant="secondary" onClick={props.CloseModal}>
             Close
           </Button>
         </Modal.Footer>
