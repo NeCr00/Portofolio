@@ -6,6 +6,7 @@ import DriveImg from "./icons/drive.png";
 import DeleteIcon from "@material-ui/icons/Delete";
 import NewFolder from "./NewFolder";
 import AddFile from "./AddFile";
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 function Navbar(props) {
   const [showFile, setShowFile] = useState(false);
@@ -17,6 +18,15 @@ function Navbar(props) {
   const handleCloseFolder = () => setShowFolder(false);
   const handleShowFolder = () => setShowFolder(true);
 
+function handleSearch(){
+  
+  props.enableSearch();
+}
+
+// function handleSearchInput(e){
+//   var searchInput = e.target.value;
+//   props.onChange(searchInput)
+// }
 
   return (
     <>
@@ -27,7 +37,7 @@ function Navbar(props) {
         </div>
 
         <div className={styles.Searchbar}>
-          <input className={styles.TextField} placeholder="Search in Drive" />
+          <input className={styles.TextField} placeholder="Search in Drive"  onInput={props.enableSearch} onChange={event=> props.onChange(event.target.value)}/>
         </div>
     
         <div className={styles.actionIcons}>
@@ -57,6 +67,11 @@ function Navbar(props) {
           <button className={styles.btn}>
             <DeleteIcon style={{ fontSize: 50 }}></DeleteIcon>
             <p>Delete File</p>
+          </button>
+
+          <button className={styles.btn} onClick={props.renderPage}>
+            <RefreshIcon style={{ fontSize: 50 }}></RefreshIcon>
+            <p> Refresh</p>
           </button>
         </div>
       </div>

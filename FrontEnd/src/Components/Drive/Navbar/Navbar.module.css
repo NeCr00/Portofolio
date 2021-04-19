@@ -48,7 +48,7 @@ p{
 }
 
 .TextField {
-  width: 75%;
+  width: 60%;
   margin-left: 50px;
   height: 38px;
   border: 2px solid rgb(20, 20, 20);
@@ -68,7 +68,7 @@ textarea:focus, input:focus{
 .actionIcons {
   display: flex;
   justify-content: space-between;
-  width:300px;
+  width:400px;
   float: left;
   margin-right: 200px;
   align-items: center;
@@ -81,6 +81,7 @@ textarea:focus, input:focus{
   border:none;
   width:100px;
   outline: none;
+  
 }
 
 .btn:hover{

@@ -44,9 +44,6 @@ app.use(
 app.use(bodyParser.json());
 
 const secretToken = "aaqaqqaqaqaqqaq";
-// app.get('/', function (request, response) {
-//     response.sendFile(path.join(__dirname + '/login.html'));
-// });
 
 app.post("/auth", function (request, response) {
   var email = request.body.email;

@@ -31,7 +31,7 @@ function NewFolder(props) {
     <>
     <button className={styles.btn}>
       <FolderIcon style={{ fontSize: 50 }} onClick={props.handleShow}></FolderIcon>
-      <p>Add folder</p>
+      <p>Add Folder</p>
       </button>
       
       
