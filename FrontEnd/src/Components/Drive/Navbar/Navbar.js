@@ -23,6 +23,7 @@ function handleSearch(){
   props.enableSearch();
 }
 
+
 // function handleSearchInput(e){
 //   var searchInput = e.target.value;
 //   props.onChange(searchInput)
@@ -59,8 +60,8 @@ function handleSearch(){
             {" "}
           </NewFolder>
 
-          <button className={styles.btn}>
-            <GetAppIcon style={{ fontSize: 50 }}></GetAppIcon>
+          <button className={styles.btn} onClick={props.handleDownload}>
+            <GetAppIcon style={{ fontSize: 50 }} ></GetAppIcon>
             <p>Download</p>
           </button>
 

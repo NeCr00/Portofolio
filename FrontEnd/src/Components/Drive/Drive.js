@@ -20,8 +20,8 @@ function Drive(props) {
 
   function HandleSelectedFile(file) {
     var elementIndex = -1;
-    if (selectedFiles.length>0) {
-       elementIndex = selectedFiles.findIndex(
+    if (selectedFiles.length > 0) {
+      elementIndex = selectedFiles.findIndex(
         (element) => element.name === file.name && element.path == file.path
       );
     }
@@ -31,13 +31,31 @@ function Drive(props) {
       delete files[elementIndex];
       files.length--;
       setSelectedFiles(files);
-
     } else {
       files.push(file);
 
       setSelectedFiles(files);
     }
     console.log(selectedFiles);
+  }
+
+  function handleDownload() {
+    const files = selectedFiles;
+    console.log(1);
+    if (files) {
+      axios({
+        url: "http://localhost:3001/DownloadFiles",
+        method: "GET",
+        responseType: "blob",
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "file.pdf");
+        document.body.appendChild(link);
+        link.click();
+      });
+    }
   }
 
   function handleSelectedFolder(newPath) {
@@ -79,8 +97,8 @@ function Drive(props) {
 
   useEffect(() => {
     setDisabled(true); //Drive component request files and folders for the current path
-    setSelectedFiles([])
-    console.log(selectedFiles)
+    setSelectedFiles([]);
+    console.log(selectedFiles);
     axios
       .get("http://localhost:3001/Folders", { params: { Path: path } })
       .then((res) => {
@@ -97,7 +115,6 @@ function Drive(props) {
       .then((res) => {
         setFiles(res.data);
         setDisabled(false);
-       
       })
       .catch((error) => {
         console.log(error);
@@ -112,8 +129,9 @@ function Drive(props) {
           renderPage={renderPage}
           enableSearch={enableSearch}
           onChange={(input) => setSearchInput(input)}
+          handleDownload = {handleDownload}
         ></Navbar>
-        <Path path={path} handlePreviousPath={handlePreviousPath}></Path>
+        <Path path={path} handlePreviousPath={handlePreviousPath} ></Path>
 
         {folders.map((folder, i) => (
           <Folder
@@ -126,8 +144,7 @@ function Drive(props) {
 
         {files.map((file, i) => (
           <File
-            key={i}
-            id = {file.idfiles}
+            key={file.idfiles}
             name={file.name}
             type={file.type}
             path={file.path}
@@ -145,7 +162,12 @@ function Drive(props) {
           onChange={(input) => setSearchInput(input)}
         ></Navbar>
         {searchResults.map((file, i) => (
-          <File key={i} name={file.name} type={file.type}  onClick={HandleSelectedFile}> </File>
+          <File
+            key={i}
+            name={file.name}
+            type={file.type}
+            onClick={HandleSelectedFile}
+          ></File>
         ))}
       </div>
     );

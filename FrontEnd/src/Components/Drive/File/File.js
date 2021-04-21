@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./File.module.css";
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 
@@ -11,22 +11,24 @@ import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
 
 function File(props) {
   const [selected, setSelected] = useState(false);
-
+  const [key,setKey] = useState(props.key);
   function handleSelectedItem() {
-    let file = { name: props.name, path: props.path };
-    
     if (selected) setSelected(false);
     else setSelected(true);
-
-    props.onClick(file)
   }
 
-
+  function AddselectedFile() {
+    let file = { name: props.name, path: props.path };
+    props.onClick(file);
+  }
 
   return (
     <button
       className={selected ? styles.selected : styles.unselected}
-      onClick={handleSelectedItem}
+      onClick={() => {
+        handleSelectedItem();
+        AddselectedFile();
+      }}
     >
       <InsertDriveFileIcon style={{ fontSize: 100, fill: "black" }}>
         {" "}
