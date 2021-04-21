@@ -16,7 +16,7 @@ var connection = mysql.createPool({
   user: "root",
   password: "root",
   database: "portofolio",
-  port: '3307'
+  port: "3307",
 });
 
 connection.getConnection(function (err) {
@@ -168,8 +168,8 @@ app.post("/upload", (req, res) => {
   const name = req.files.file.name.split(".");
   const type = name.pop();
   const path = req.body.path;
- 
-  console.log(path)
+
+  console.log(path);
 
   //  mv() method places the file inside public directory
   myFile.mv(`${__dirname}/Files/${myFile.name}`, function (err) {
@@ -177,19 +177,17 @@ app.post("/upload", (req, res) => {
       console.log(err);
       return res.status(500).send({ msg: "Error occured" });
     }
-    
   });
 
   connection.query(
     "SELECT id FROM folders Where path =?",
     [path],
     function (error, results) {
-    if(results)
-     var  id = JSON.parse(JSON.stringify(results[0].id));
-      
+      if (results) var id = JSON.parse(JSON.stringify(results[0].id));
+
       connection.query(
         "INSERT INTO files (name,type,path) VALUES (?,?,?)",
-        [name, type,  path],
+        [name, type, path],
         function (error, results) {
           if (error) console.log(error);
         }
@@ -197,6 +195,18 @@ app.post("/upload", (req, res) => {
     }
   );
   res.send("success");
+});
+
+app.get("/SearchResults", function (request, response) {
+  var searchInput = request.query.searchInput;
+  console.log(request)
+  connection.query(
+    "Select * from files WHERE name LIKE '%" + searchInput + "%'",
+    function (error, results) {
+      if (error) console.log(error);
+      else response.json(results);
+    }
+  );
 });
 
 app.listen(3001);
