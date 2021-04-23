@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
+const fs = require("fs");
 
 app.use(cors());
 app.use(fileUpload());
@@ -165,10 +166,12 @@ app.post("/upload", (req, res) => {
   }
   // accessing the file
   const myFile = req.files.file;
-  const name = req.files.file.name.split(".");
+  var name = req.files.file.name.split(".");
+  console.log(name);
   const type = name.pop();
+  name = name.join();
   const path = req.body.path;
-
+  const url = `${__dirname}/Files/${myFile.name}`;
   console.log(path);
 
   //  mv() method places the file inside public directory
@@ -186,8 +189,8 @@ app.post("/upload", (req, res) => {
       if (results) var id = JSON.parse(JSON.stringify(results[0].id));
 
       connection.query(
-        "INSERT INTO files (name,type,path) VALUES (?,?,?)",
-        [name, type, path],
+        "INSERT INTO files (name,type,path,url) VALUES (?,?,?,?)",
+        [name, type, path, url],
         function (error, results) {
           if (error) console.log(error);
         }
@@ -199,7 +202,7 @@ app.post("/upload", (req, res) => {
 
 app.get("/SearchResults", function (request, response) {
   var searchInput = request.query.searchInput;
-  console.log(request)
+  console.log(request);
   connection.query(
     "Select * from files WHERE name LIKE '%" + searchInput + "%'",
     function (error, results) {
@@ -209,12 +212,38 @@ app.get("/SearchResults", function (request, response) {
   );
 });
 
+app.get("/DownloadFiles", function (request, response) {
+  var file = JSON.parse(request.query.element);
 
-app.get("/DownloadFiles",function (request, response) {
-  console.log(1)
-  const url = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
-  response.send(url);
+  connection.query(
+    "Select * from files Where name=?",
+    [file.name],
+    function (error, results) {
+      var data = JSON.stringify(results[0]);
+      data = JSON.parse(data);
+      const url = String(data.url);
 
-})
+      response.download(url);
+    }
+  );
+  const url = `${__dirname}/Files/example.rar`;
+});
+
+app.post("/DeleteFiles", function (request, response) {
+  var file = request.body.element;
+  console.log(request)
+  connection.query(
+    "Delete from files Where name=? AND path=? AND type=?",
+    [file.name, file.path, file.type],
+    function (error, results) {
+      console.log("deleted");
+      fs.unlink(`${__dirname}/Files/${file.name}.${file.type}`, error=>{
+        if (error) console.log(error)
+        
+      });
+      response.send("Deleted");
+    }
+  );
+});
 
 app.listen(3001);

@@ -20,42 +20,71 @@ function Drive(props) {
 
   function HandleSelectedFile(file) {
     var elementIndex = -1;
-    if (selectedFiles.length > 0) {
-      elementIndex = selectedFiles.findIndex(
-        (element) => element.name === file.name && element.path == file.path
+    var files = selectedFiles;
+    files = files.filter(function (el) {
+      return el != null;
+    });
+
+    if (files.length > 0) {
+      elementIndex = files.findIndex(
+        (element) => element.name === file.name && element.name != "underfined"
       );
     }
-    let files = selectedFiles;
 
     if (elementIndex != -1) {
-      delete files[elementIndex];
-      files.length--;
+      files.splice(elementIndex, 1);
       setSelectedFiles(files);
     } else {
       files.push(file);
 
       setSelectedFiles(files);
     }
-    console.log(selectedFiles);
+    console.log(files);
   }
 
   function handleDownload() {
     const files = selectedFiles;
-    console.log(1);
     if (files) {
-      axios({
-        url: "http://localhost:3001/DownloadFiles",
-        method: "GET",
-        responseType: "blob",
-      }).then((response) => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", "file.pdf");
-        document.body.appendChild(link);
-        link.click();
+      files.forEach(function (element) {
+        axios({
+          url: "http://localhost:3001/DownloadFiles",
+          method: "GET",
+          responseType: "blob",
+          params: { element },
+        })
+          .then((response) => {
+            console.log(response);
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement("a");
+            link.href = url;
+            console.log(response.data.extensi);
+            const fileName = element.name + "." + element.type;
+            console.log(fileName);
+            link.setAttribute("download", fileName);
+            document.body.appendChild(link);
+            link.click();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
     }
+  }
+
+  function handleDelete (){
+    const files = selectedFiles;
+    console.log(selectedFiles)
+    files.forEach(function (element){
+      axios({
+        url:"http://localhost:3001/DeleteFiles",
+        method:"POST",
+        data:{element},
+      }).then(response=>{
+        setSelectedFiles([])
+      }).catch(error=>{
+        console.log(error)
+      })
+    })
   }
 
   function handleSelectedFolder(newPath) {
@@ -97,7 +126,7 @@ function Drive(props) {
 
   useEffect(() => {
     setDisabled(true); //Drive component request files and folders for the current path
-    setSelectedFiles([]);
+
     console.log(selectedFiles);
     axios
       .get("http://localhost:3001/Folders", { params: { Path: path } })
@@ -129,9 +158,10 @@ function Drive(props) {
           renderPage={renderPage}
           enableSearch={enableSearch}
           onChange={(input) => setSearchInput(input)}
-          handleDownload = {handleDownload}
+          handleDownload={handleDownload}
+          handleDelete = {handleDelete}
         ></Navbar>
-        <Path path={path} handlePreviousPath={handlePreviousPath} ></Path>
+        <Path path={path} handlePreviousPath={handlePreviousPath}></Path>
 
         {folders.map((folder, i) => (
           <Folder
@@ -154,13 +184,16 @@ function Drive(props) {
       </div>
     );
   else
+    if(searchResults.length>0){
     return (
       <div className={styles.Drive}>
         <Navbar
           path={path}
           renderPage={renderPage}
           onChange={(input) => setSearchInput(input)}
+          handleDownload={handleDownload}
         ></Navbar>
+        
         {searchResults.map((file, i) => (
           <File
             key={i}
@@ -170,7 +203,20 @@ function Drive(props) {
           ></File>
         ))}
       </div>
-    );
+    );}
+    else{
+      return (
+        <div className={styles.Drive}>
+          <Navbar
+            path={path}
+            renderPage={renderPage}
+            onChange={(input) => setSearchInput(input)}
+            handleDownload={handleDownload}
+          ></Navbar>
+          <div className={styles.notExist}>Files does not Exist !</div>
+        </div>
+      );
+    }
 }
 
 export default Drive;

@@ -7,3 +7,11 @@
     height:full;
     float:right;
 }
+
+.notExist{
+
+    color:white;
+    margin-top: 100px;
+    text-align:center;
+    font-size:50px;
+}

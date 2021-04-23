@@ -18,7 +18,7 @@ function File(props) {
   }
 
   function AddselectedFile() {
-    let file = { name: props.name, path: props.path };
+    let file = { name: props.name, path: props.path, type:props.type };
     props.onClick(file);
   }
 

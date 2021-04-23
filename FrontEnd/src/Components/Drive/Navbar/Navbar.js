@@ -65,7 +65,7 @@ function handleSearch(){
             <p>Download</p>
           </button>
 
-          <button className={styles.btn}>
+          <button className={styles.btn} onClick={props.handleDelete}>
             <DeleteIcon style={{ fontSize: 50 }}></DeleteIcon>
             <p>Delete File</p>
           </button>
